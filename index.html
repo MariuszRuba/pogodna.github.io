@@ -4,23 +4,91 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sprzedaż nieruchomości</title>
+
 <style>
-body { font-family: Arial; margin:0; background:#f5f5f5; }
-header { background:#2c3e50; color:white; padding:20px; text-align:center; }
-.container { padding:20px; max-width:900px; margin:auto; background:white; }
-img { width:100%; margin-bottom:10px; border-radius:10px; }
+body {
+  font-family: Arial;
+  margin: 0;
+  background: url('zamek.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* ciemna nakładka żeby tekst był czytelny */
+.overlay {
+  background: rgba(0,0,0,0.6);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+header {
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  background: rgba(255,255,255,0.95);
+  padding: 20px;
+  border-radius: 12px;
+}
+
+/* MINIATURY ZDJĘĆ */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.gallery img:hover {
+  transform: scale(1.03);
+}
+
+/* LIGHTBOX */
+#lightbox {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  justify-content: center;
+  align-items: center;
+}
+
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+
 .button {
-display:inline-block;
-padding:15px;
-background:#27ae60;
-color:white;
-text-decoration:none;
-border-radius:8px;
-font-size:18px;
+  display:inline-block;
+  padding:15px;
+  background:#27ae60;
+  color:white;
+  text-decoration:none;
+  border-radius:8px;
+  font-size:18px;
+  margin-right:10px;
 }
 </style>
 </head>
+
 <body>
+
+<div class="overlay">
 
 <header>
 <h1>Na sprzedaż: Dom</h1>
@@ -31,63 +99,44 @@ font-size:18px;
 
 <h2>Opis</h2>
 <p>
-🌿 Nowoczesny dom w Czersku – komfort, technologia i natura
+🌿 Nowoczesny dom w Czersku – komfort, technologia i natura<br><br>
 
-Na sprzedaż wyjątkowy, nowoczesny dom jednorodzinny o powierzchni 130 m², połączony z dwustanowiskowym garażem 40 m², usytuowany na przestronnej działce 940 m² w malowniczej miejscowości Czersk (gm. Góra Kalwaria).
+Na sprzedaż dom 130 m² + garaż 40 m² na działce 940 m² w Czersku (gm. Góra Kalwaria).<br><br>
 
-Dom został wybudowany w 2015 roku z wysokiej jakości materiałów – cegły ceramicznej, z dachem pokrytym dachówką ceramiczną. Nieruchomość jest w pełni wykończona i gotowa do natychmiastowego zamieszkania.
+Wybudowany w 2015 roku z cegły ceramicznej, dachówka ceramiczna. Gotowy do zamieszkania.<br><br>
 
-✨ Wnętrze zaprojektowane z myślą o komforcie:
-
-Parter oferuje przestronną, jasną strefę dzienną:
-
-salon z otwartą kuchnią – serce domu
-łazienka
-funkcjonalna kotłownia z pralnią
-🧠 Nowoczesne technologie:
-
-Dom wyposażony jest w system inteligentnego zarządzania Home Assistant, który pozwala na automatyzację i wygodne sterowanie funkcjami budynku.
-
-🌲 Lokalizacja, która daje spokój:
-
-Nieruchomość położona jest w wyjątkowo cichej i zielonej okolicy:
-
-bezpośrednie sąsiedztwo lasów
-około 1 km do historycznego Zamku Książąt Mazowieckich w Czersku
-szybki dostęp do Góra Kalwaria i Warszawy
-⚙️ Media:
-prąd
-woda
-gaz ziemny
-szambo
-📄 Dodatkowe informacje:
-pełna własność
-cena do negocjacji
-idealny dom dla osób ceniących spokój, naturę i nowoczesne rozwiązania
+🏡 Parter: salon z kuchnią, łazienka, pralnia/kotłownia<br>
+🧠 Home Assistant (smart home)<br>
+🌲 Blisko lasu i Zamku w Czersku (ok. 1 km)<br>
+⚙️ Media: prąd, woda, gaz, szambo<br>
+📄 Pełna własność, cena do negocjacji
 </p>
 
 <h2>Zdjęcia</h2>
-<img src="zdjecie1.jpg">
-<img src="zdjecie2.jpg">
-<img src="zdjecie3.jpg">
-<img src="zdjecie4.jpg">
-<img src="zdjecie5.jpg">
-<img src="zdjecie6.jpg">
-<img src="zdjecie7.jpg">
-<img src="zdjecie8.jpg">
-<img src="zdjecie9.jpg">
-<img src="zdjecie10.jpg">
-<img src="zdjecie11.jpg">
-<img src="zdjecie12.jpg">
-<img src="zdjecie13.jpg">
-<img src="zdjecie14.jpg">
-<img src="zdjecie15.jpg">
-<img src="zdjecie16.jpg">
-<img src="zdjecie17.jpg">
-<img src="zdjecie18.jpg">
-<img src="zdjecie19.jpg">
-<img src="zdjecie20.jpg">
-<img src="zdjecie21.jpg">
+
+<div class="gallery">
+<img src="zdjecie1.jpg" onclick="openImg(this.src)">
+<img src="zdjecie2.jpg" onclick="openImg(this.src)">
+<img src="zdjecie3.jpg" onclick="openImg(this.src)">
+<img src="zdjecie4.jpg" onclick="openImg(this.src)">
+<img src="zdjecie5.jpg" onclick="openImg(this.src)">
+<img src="zdjecie6.jpg" onclick="openImg(this.src)">
+<img src="zdjecie7.jpg" onclick="openImg(this.src)">
+<img src="zdjecie8.jpg" onclick="openImg(this.src)">
+<img src="zdjecie9.jpg" onclick="openImg(this.src)">
+<img src="zdjecie10.jpg" onclick="openImg(this.src)">
+<img src="zdjecie11.jpg" onclick="openImg(this.src)">
+<img src="zdjecie12.jpg" onclick="openImg(this.src)">
+<img src="zdjecie13.jpg" onclick="openImg(this.src)">
+<img src="zdjecie14.jpg" onclick="openImg(this.src)">
+<img src="zdjecie15.jpg" onclick="openImg(this.src)">
+<img src="zdjecie16.jpg" onclick="openImg(this.src)">
+<img src="zdjecie17.jpg" onclick="openImg(this.src)">
+<img src="zdjecie18.jpg" onclick="openImg(this.src)">
+<img src="zdjecie19.jpg" onclick="openImg(this.src)">
+<img src="zdjecie20.jpg" onclick="openImg(this.src)">
+<img src="zdjecie21.jpg" onclick="openImg(this.src)">
+</div>
 
 <h2>Lokalizacja</h2>
 <iframe 
@@ -95,10 +144,27 @@ src="https://www.google.com/maps?q=Warszawa&output=embed"
 width="100%" height="300"></iframe>
 
 <h2>Kontakt</h2>
-<a class="button" href="tel:+48 790288727">📞 790288727</a>
-<a class="button" href="tel:+48 883966856">📞 883966856</a>
+<a class="button" href="tel:+48790288727">📞 790288727</a>
+<a class="button" href="tel:+48883966856">📞 883966856</a>
 
 </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeImg()">
+  <img id="lightbox-img">
+</div>
+
+<script>
+function openImg(src) {
+  document.getElementById('lightbox').style.display = 'flex';
+  document.getElementById('lightbox-img').src = src;
+}
+
+function closeImg() {
+  document.getElementById('lightbox').style.display = 'none';
+}
+</script>
 
 </body>
 </html>
